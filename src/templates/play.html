@@ -17,7 +17,6 @@
       <!-- game board: -->
     <div class="row mx-5" style="height: 50vh">
       <div class="col-8 h-50 align-self-center">
-
             <h2>Prisoner Dilemma</h2>
 
           <table style = "width:70%">
@@ -42,7 +41,8 @@
                   <td>0/2</td>
               </tr>
           </table>
-      <button onlickaction=outcome type="button">Cooperate!</button>  <button onlickaction=outcome type="button">Defect!</button>
+          <button onlickaction=outcome type="button">Cooperate! </button>
+          <button onlickaction=outcome type="button">Defect!</button>
     </div>
       <div class="col-4 pl-3">
         <div class="row h-100">
@@ -70,6 +70,8 @@
           <button onlickaction=nextround type="button">Next round</button>
           <p>please be aware that this round does not yet count for your pay out</p>
   </div>
+  </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
   <script>
@@ -96,6 +98,7 @@
         players: 0,
         connectedPlayers: [],
         status: '',
+        outcomeOfPlayer: '',
         pusher: pusher = new Pusher('bfc1d239c66ec2226f11', {
           authEndpoint: '/pusher/auth',
           cluster: 'eu',
@@ -237,6 +240,10 @@
           this.otherPlayerChannel.bind('pusher:subscription_succeeded', () => {
             this.otherPlayerChannel.trigger('client-' + this.otherPlayerName, this.username)
           })
+        },
+
+        outcome: function () {
+            this.status = "Test"
         },
 
         startGame: function (name) {
