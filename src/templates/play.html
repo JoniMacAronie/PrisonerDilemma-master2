@@ -41,8 +41,8 @@
                   <td>0/0</td>
               </tr>
           </table>
-          <button onlickaction=outcome type="button">Cooperate! </button>
-          <button onlickaction=outcome type="button">Defect!</button>
+          <button id="buttonCooperate" onclick="outcomeOfPlay()" type="button">Cooperate! </button>
+          <button id="buttonDefect" onclick="outcome()" type="button">Defect!</button>
     </div>
       <div class="col-4 pl-3">
         <div class="row h-100">
@@ -64,15 +64,26 @@
   <div class="row mx-5" style="height: 50vh">
       <div class="col-8 h-50 align-self-center">
       <h2> Outcome: </h2>
-  <p>you chose: X</p>
-      <p> Player 2 chose: X</p>
-      <p> you payout is: XX</p>
-          <button onlickaction=nextround type="button">Next round</button>
+  <p id="demo1"></p>
+          <button onclickaction=nextround type="button">Next round</button>
           <p>please be aware that this round does not yet count for your pay out</p>
   </div>
   </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+
+      function outcomeOfPlay() {
+          document.getElementById("demo").innerHTML = "You chose: Cooperate!";
+      }
+
+      function outcome() {
+          document.getElementById("demo").innerHTML = "You chose: Defect"
+
+      }
+  </script>
+  <!--
   <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
   <script>
     var app = new Vue({
@@ -92,7 +103,6 @@
             location.assign("/play?username=" + this.username);
         }*/
       },
-
       data: {
         username: '',
         players: 0,
@@ -242,10 +252,6 @@
           })
         },
 
-        outcome: function () {
-            this.status = "Test"
-        },
-
         startGame: function (name) {
           this.status = "Game started with " + name
           this.$refs.gameboard.classList.remove('invisible')
@@ -321,5 +327,6 @@
       }
     })
   </script>
+  -->
 </body>
 </html>
