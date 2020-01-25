@@ -41,8 +41,8 @@
                   <td>0/0</td>
               </tr>
           </table>
-          <button id="buttonCooperate" onclick="outcomeOfPlay()" type="button">Cooperate! </button>
-          <button id="buttonDefect" onclick="outcome()" type="button">Defect!</button>
+          <button id="buttonCooperate" onclick="outcomeCooperate()" type="button">Cooperate! </button>
+          <button id="buttonDefect" onclick="outcomeDefect()" type="button">Defect!</button>
     </div>
       <div class="col-4 pl-3">
         <div class="row h-100">
@@ -64,24 +64,93 @@
   <div class="row mx-5" style="height: 50vh">
       <div class="col-8 h-50 align-self-center">
       <h2> Outcome: </h2>
-  <p id="demo1"></p>
-          <button onclickaction=nextround type="button">Next round</button>
-          <p>please be aware that this round does not yet count for your pay out</p>
+         <p id="playerOne"></p>
+         <p id="playerTwo"></p>
+         <p id="newgame"></p>
+         <p id="round"></p>
+         <p id="outcome"></p>
+          <button id = "newGame" onclick = "newGame()" type="button">Next round</button>
+          <p id="status"> PLEASE BE AWARE THAT THIS ROUND DOES NOT COUNT</p>
   </div>
   </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <script>
+      // 0, if player did not play yet
+      // 1, if player has played
+      let playerOnePressed = 0;
+      let playerTwoPressed = 0;
 
-      function outcomeOfPlay() {
-          document.getElementById("demo1").innerHTML = "You chose: Cooperate!";
+      // what both players played:
+      let playerOnePlayed = "";
+      let playerTwoPlayed = "";
+
+      // for now, first player 1 plays then player two
+      let counter = 0;
+      // games played counter
+      let gameCounter = 0;
+
+        // TODO: only show when both players played
+      function outcomeCooperate() {
+          if(counter == 0) {
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Cooperate!";
+              playerOnePressed = 1;
+              playerOnePlayed = "Cooperate";
+              counter ++;
+          }else{
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Cooperate!";
+              playerTwoPressed = 1;
+              playerTwoPlayed = "Cooperate";
+          }
       }
 
-      function outcome() {
-          document.getElementById("demo1").innerHTML = "You chose: Defect"
-
+      function outcomeDefect() {
+          if(counter == 0) {
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Defect"
+              playerOnePressed = 1;
+              playerOnePlayed = "Defect";
+          }else{
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Defect!";
+              playerTwoPressed = 1;
+              playerTwoPlayed = "Defect";
+          }
       }
+      function newGame(){
+        if(playerOnePressed == 1 && playerTwoPressed == 1){
+            document.getElementById("newgame").innerHTML = "Starting a new Game";
+            document.getElementById("playerOne").innerHTML = "Player 1 chose: ";
+            document.getElementById("playerTwo").innerHTML = "Player 2 chose: ";
+            playerTwoPressed = 0;
+            playerOnePressed = 0;
+            counter = 0;
+            gameCounter ++;
+            document.getElementById("round".innerHTML = "Round " + gameCounter);
+        }
+        if(gameCounter == 2){
+            document.getElementById("status").innerHTML = "THIS ROUND COUNTS";
+            document.getElementById("newGame").innerText = "Done";
+        }
+        if(gameCounter == 3){
+            outcomeGame();
+        }
+      }
+
+      function outcomeGame(){
+          if(playerOnePlayed == "Cooperate" && playerTwoPlayed == "Cooperate"){
+              document.getElementById("outcome").innerHTML = "No player receives anything";
+          }
+          else if(playerOnePlayed == "Cooperate" && playerTwoPlayed == "Defect"){
+              document.getElementById("outcome").innerHTML = "Player 2 receives 2€";
+          }
+          else if(playerOnePlayed == "Defect" && playerTwoPlayed == "Cooperate"){
+              document.getElementById("outcome").innerHTML = "Player 1 receives 2€";
+          }
+          else if(playerOnePlayed == "Defect" && playerTwoPlayed == "Defect"){
+              document.getElementById("outcome").innerHTML = "Player 2 receives 1€";
+          }
+      }
+
   </script>
   <!--
   <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
