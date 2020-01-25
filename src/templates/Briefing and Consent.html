@@ -16,10 +16,10 @@
     </div>
 </div>
 <div> <h2>Briefing and Consent</h2>
-    <p>Dear participant please read the following carefully: </p>
-    <p> you are about to participate in a research experiment on cooperation in prisoners dilemma games.</p>
-    <p>You will recive monetary rewards for your participation depending on your choices in the game. You are playing with other participants, please wait in the Lobby until you see that others are online. </p>
-    <p>Before the game please answer the 3 questions about you demographics and after the game a short questionaire, then you can enter your payment details and recive your reward.</p>
+    <p>Dear participant please read the following carefully: You are about to participate in a research experiment on cooperation in prisoners dilemma games.
+    You will recive monetary rewards for your participation depending on your choices in the game.
+        You are playing with other participants, please wait in the Lobby until you see that others are online.
+        Before the game please answer the 3 questions about you demographics and after the game a short questionaire, then you can enter your payment details and recive your reward.</p>
 
 <button onclick="Nexttoconsent()" type="button"> Next: Consent </button>
 <p id="demo"></p>
@@ -28,6 +28,16 @@ function Nexttoconsent() {
   document.getElementById("demo").innerHTML = "next page not written yet";
 }
 </script>
+</div>
+<div> <h2>Consent</h2>
+<p> I hereby consent to participating in this experiment. The data will be recorded anonymosly.  </p>
+    <form action="/action_page.php">
+Full name: <input type="text" name="Full Name" value="Mickey Mouse"><br>
+Date: <input type="text" name="Date" value="22.12.1999"><br>
+<input type="submit" value="Submit">
+</form>
+
+<p>Click the "Submit" button to give your consent and continue to the study. You will be randomly assigned to one of the Experimental conditions.</p>
 </div>
 </body>
 </html>
