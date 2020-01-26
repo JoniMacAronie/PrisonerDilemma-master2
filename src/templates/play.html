@@ -91,31 +91,42 @@
       // games played counter
       let gameCounter = 0;
 
-        // TODO: only show when both players played
+      // when player presses cooperate
       function outcomeCooperate() {
           if(counter == 0) {
-              document.getElementById("playerOne").innerHTML = "Player 1 chose: Cooperate!";
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Played!";
               playerOnePressed = 1;
               playerOnePlayed = "Cooperate";
               counter ++;
           }else{
-              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Cooperate!";
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Cooperate";
           }
+          showOutcome();
       }
-
+        // when player presses defect
       function outcomeDefect() {
           if(counter == 0) {
-              document.getElementById("playerOne").innerHTML = "Player 1 chose: Defect"
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Played"
               playerOnePressed = 1;
               playerOnePlayed = "Defect";
           }else{
-              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Defect!";
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Defect";
           }
+          showOutcome();
+
       }
+      // only show outcome when both players played
+      function showOutcome(){
+          if(playerOnePressed == 1 && playerTwoPressed == 1){
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: " + playerOnePlayed;
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: " + playerTwoPlayed;
+          }
+      }
+      // create new game
       function newGame(){
         if(playerOnePressed == 1 && playerTwoPressed == 1){
             document.getElementById("newgame").innerHTML = "Starting a new Game";
@@ -135,7 +146,7 @@
             outcomeGame();
         }
       }
-
+        // calculates the final outcome
       function outcomeGame(){
           if(playerOnePlayed == "Cooperate" && playerTwoPlayed == "Cooperate"){
               document.getElementById("outcome").innerHTML = "No player receives anything";

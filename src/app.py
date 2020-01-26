@@ -17,6 +17,10 @@ name = ''
 def index():
   return render_template('index.html')
 
+@app.route('/BriefingandConsent')
+def BriefingandConsent():
+  return render_template('BriefingandConsent.html')
+
 @app.route('/play')
 def play():
   global name
