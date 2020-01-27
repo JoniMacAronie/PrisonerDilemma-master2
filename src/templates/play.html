@@ -106,10 +106,11 @@
               playerOnePressed = 1;
               playerOnePlayed = "Cooperate";
               counter ++;
-          }else{
+          }else if(counter == 1){
               document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Cooperate";
+              counter++;
           }
           showOutcome();
       }
@@ -119,10 +120,11 @@
               document.getElementById("playerOne").innerHTML = "Player 1 chose: Played"
               playerOnePressed = 1;
               playerOnePlayed = "Defect";
-          }else{
+          }else if(counter == 1){
               document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Defect";
+              counter++;
           }
           showOutcome();
 
