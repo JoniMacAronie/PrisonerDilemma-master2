@@ -10,15 +10,16 @@
 <body>
   <div id="app" class="container-fluid">
     <div class="container-fluid clearfix mb-3 shadow">
+        <!--
       <div class="float-right w-25 py-3">
         <p class="d-inline"> {% raw %} {{ username }} {% endraw %} </p>
       </div>
+      -->
     </div>
       <!-- game board: -->
     <div class="row mx-5" style="height: 50vh">
       <div class="col-8 h-50 align-self-center">
             <h2>Prisoner Dilemma</h2>
-
           <table style = "width:70%">
               <tr>
                   <th></th>
@@ -41,9 +42,15 @@
                   <td>0/0</td>
               </tr>
           </table>
+          <!-- just making a bit of space -->
+              <p></p>
+              <p></p>
+              <p></p>
+
           <button id="buttonCooperate" onclick="outcomeCooperate()" type="button">Cooperate! </button>
           <button id="buttonDefect" onclick="outcomeDefect()" type="button">Defect!</button>
     </div>
+            <!--
       <div class="col-4 pl-3">
         <div class="row h-100">
           <div class="col border h-75 text-center" style="background: rgb(114, 230, 147);">
@@ -59,6 +66,7 @@
           </div>
         </div>
       </div>
+      -->
   </div>
 
   <div class="row mx-5" style="height: 50vh">
@@ -91,31 +99,44 @@
       // games played counter
       let gameCounter = 0;
 
-        // TODO: only show when both players played
+      // when player presses cooperate
       function outcomeCooperate() {
           if(counter == 0) {
-              document.getElementById("playerOne").innerHTML = "Player 1 chose: Cooperate!";
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Played!";
               playerOnePressed = 1;
               playerOnePlayed = "Cooperate";
               counter ++;
-          }else{
-              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Cooperate!";
+          }else if(counter == 1){
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Cooperate";
+              counter++;
           }
+          showOutcome();
       }
-
+        // when player presses defect
       function outcomeDefect() {
           if(counter == 0) {
-              document.getElementById("playerOne").innerHTML = "Player 1 chose: Defect"
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: Played"
               playerOnePressed = 1;
               playerOnePlayed = "Defect";
-          }else{
-              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Defect!";
+          }else if(counter == 1){
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: Played!";
               playerTwoPressed = 1;
               playerTwoPlayed = "Defect";
+              counter++;
+          }
+          showOutcome();
+
+      }
+      // only show outcome when both players played
+      function showOutcome(){
+          if(playerOnePressed == 1 && playerTwoPressed == 1){
+              document.getElementById("playerOne").innerHTML = "Player 1 chose: " + playerOnePlayed;
+              document.getElementById("playerTwo").innerHTML = "Player 2 chose: " + playerTwoPlayed;
           }
       }
+      // create new game
       function newGame(){
         if(playerOnePressed == 1 && playerTwoPressed == 1){
             document.getElementById("newgame").innerHTML = "Starting a new Game";
@@ -135,7 +156,7 @@
             outcomeGame();
         }
       }
-
+        // calculates the final outcome
       function outcomeGame(){
           if(playerOnePlayed == "Cooperate" && playerTwoPlayed == "Cooperate"){
               document.getElementById("outcome").innerHTML = "No player receives anything";
